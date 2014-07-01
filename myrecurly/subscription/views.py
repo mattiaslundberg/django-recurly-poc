@@ -25,3 +25,19 @@ class BillingInfo(views.APIView):
         recurly_account.billing_info = recurly.BillingInfo(token_id=request.POST["recurly-token"])
         recurly_account.save()
         return HttpResponse()
+
+class SubscriptionInfo(views.APIView):
+    def get(self, request, *args, **kwargs):
+        recurly_account = recurly.Account.get(request.user.id)
+        return HttpResponse(recurly_account.subscriptions()[0].state)
+
+    def post(self, request, *args, **kwargs):
+        recurly_account = recurly.Account.get(request.user.id)
+        subscription = recurly.Subscription(plan_code="haxxor", currency="EUR", account=recurly_account)
+        subscription.save()
+        return HttpResponse("Saved")
+
+    def delete(self, request, *args, **kwargs):
+        recurly_account = recurly.Account.get(request.user.id)
+        recurly_account.subscripsions().cancel()
+        return HttpResponse()

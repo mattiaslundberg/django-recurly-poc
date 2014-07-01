@@ -5,7 +5,7 @@
 <body>
     <h1>Subscription</h1>
 
-    <form method="post" action="/api/billing/">
+    <form method="post" action="/api/billing/" id="billing">
         {% csrf_token %}
         <div>
           <label for="number">Card Number</label>
@@ -48,9 +48,17 @@
           <input type="text" data-recurly="country" id="country" name="country">
         </div>
 
-        <button id="subscribe">Subscribe</button>
+        <button id="subscribe">Set Billing</button>
 
         <input type="hidden" data-recurly="token" name="recurly-token">
+    </form>
+    <form action="/api/subscription/" method="post">
+        {% csrf_token %}
+        <button id="setsubscription">Start subscription</button>
+    </form>
+    <form action="/api/subscription/" method="delete">
+        {% csrf_token %}
+        <button id="setsubscription">Delete subscription</button>
     </form>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://js.recurly.com/v3/recurly.js"></script>

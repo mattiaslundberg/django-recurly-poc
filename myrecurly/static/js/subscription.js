@@ -1,4 +1,4 @@
-$("form").on("submit", function(evnt) {
+$("form.billing").on("submit", function(evnt) {
     evnt.preventDefault();
     var form = this;
 
