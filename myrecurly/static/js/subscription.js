@@ -1,8 +1,11 @@
-jsonapi = function(url, method, params, callback) {
-    $.post(url, JSON.stringify({
-        method: method,
-        params: params,
-        id: 1,
-        jsonrpc: "2.0"
-    }), callback, "json");
-}
+$("form").on("submit", function(evnt) {
+    evnt.preventDefault();
+    var form = this;
+
+    recurly.token(form, function(err, token) {
+        if (err) {
+            console.debug(err);
+        }
+        else form.submit();
+    });
+});

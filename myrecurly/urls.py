@@ -1,16 +1,14 @@
 from django.conf.urls import patterns, include, url
-from django.conf.urls.default import login_required
 from django.contrib import admin
 admin.autodiscover()
 
 from myrecurly.subscription.views import BillingInfo
+from myrecurly.views import HomeView
 
 urlpatterns = patterns("",
-    # Examples:
-     url(r'^$', 'recurly.views.home', name='home'),
+    url(r'^$', HomeView.as_view(), name='home'),
 
-     url(r"^api/billing/$", login_required(BillingInfo.as_view())),
-    # url(r'^blog/', include('blog.urls')),
+    url(r"^api/billing/$", BillingInfo.as_view()),
 
     url(r"^subscription/", include("myrecurly.subscription.urls")),
 

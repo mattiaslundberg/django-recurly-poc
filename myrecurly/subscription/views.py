@@ -1,13 +1,26 @@
 from django.views.generic.base import TemplateView
 from rest_framework import views
 from django.http import HttpResponse
+from myrecurly.utils import recurly
+from django.conf import settings
 
 class SubscriptionView(TemplateView):
     template_name = "subscription_main.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(SubscriptionView, self).get_context_data(**kwargs)
+        context["RECURLY_PUBLIC"] = settings.RECURLY_PUBLIC
+        return context
+
 class BillingInfo(views.APIView):
     def get(self, request, *args, **kwargs):
-        return HttpResponse("sometext")
+        recurly_account = recurly.Account.get(request.user.id)
+        try:
+            return HttpResponse(recurly_account.billing_info)
+        except:
+            return HttpResponse()
 
     def set(self, request, *args, **kwargs):
-        pass
+        print request.POST
+        recurly_account = recurly.Account.get(request.user.id)
+        recurly_account.billing_info = recurly.BillingInfo(token_id="erqer")
