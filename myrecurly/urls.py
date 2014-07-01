@@ -8,7 +8,7 @@ from myrecurly.views import HomeView
 urlpatterns = patterns("",
     url(r'^$', HomeView.as_view(), name='home'),
 
-    url(r"^api/billing/$", BillingInfo.as_view()),
+    url(r"^api/billing/", BillingInfo.as_view()),
 
     url(r"^subscription/", include("myrecurly.subscription.urls")),
 

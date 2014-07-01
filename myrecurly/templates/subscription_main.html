@@ -6,6 +6,7 @@
     <h1>Subscription</h1>
 
     <form method="post" action="/api/billing/">
+        {% csrf_token %}
         <div>
           <label for="number">Card Number</label>
           <input type="text" data-recurly="number" id="number">

@@ -20,7 +20,8 @@ class BillingInfo(views.APIView):
         except:
             return HttpResponse()
 
-    def set(self, request, *args, **kwargs):
-        print request.POST
+    def post(self, request, *args, **kwargs):
         recurly_account = recurly.Account.get(request.user.id)
-        recurly_account.billing_info = recurly.BillingInfo(token_id="erqer")
+        recurly_account.billing_info = recurly.BillingInfo(token_id=request.POST["recurly-token"])
+        recurly_account.save()
+        return HttpResponse()
