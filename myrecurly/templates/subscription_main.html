@@ -56,8 +56,9 @@
         {% csrf_token %}
         <button id="setsubscription">Start subscription</button>
     </form>
-    <form action="/api/subscription/" method="delete">
+    <form action="/api/subscription/" method="post" id="delete">
         {% csrf_token %}
+        <input type="hidden" name="delete">
         <button id="setsubscription">Delete subscription</button>
     </form>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
