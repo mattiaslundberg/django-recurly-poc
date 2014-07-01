@@ -34,7 +34,7 @@ class SubscriptionInfo(views.APIView):
     def post(self, request, *args, **kwargs):
         recurly_account = recurly.Account.get(request.user.id)
         if "delete" in request.POST:
-            recurly_account.subscriptions()[0].cancel()
+            recurly_account.subscriptions()[0].terminate(refund="none")
         else:
             subscription = recurly.Subscription(plan_code="haxxor", currency="EUR", account=recurly_account)
             subscription.save()
