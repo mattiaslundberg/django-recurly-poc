@@ -82,7 +82,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = "/accounts/login/"
-ACCOUNT_REACTIVATION_DAYS = 10
+ACCOUNT_ACTIVATION_DAYS = 10
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
