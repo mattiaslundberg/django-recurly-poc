@@ -1,10 +1,10 @@
 from django.views.generic.base import TemplateView
 from rest_framework import views
 from django.http import HttpResponse
-from myrecurly.utils import recurly
+from myrecurly.utils import recurly, LoginRequired
 from django.conf import settings
 
-class SubscriptionView(TemplateView):
+class SubscriptionView(LoginRequired, TemplateView):
     template_name = "subscription_main.html"
 
     def get_context_data(self, **kwargs):
@@ -18,13 +18,13 @@ class BillingInfo(views.APIView):
         try:
             return HttpResponse(recurly_account.billing_info)
         except:
-            return HttpResponse()
+            return HttpResponse("Not found")
 
     def post(self, request, *args, **kwargs):
         recurly_account = recurly.Account.get(request.user.id)
         recurly_account.billing_info = recurly.BillingInfo(token_id=request.POST["recurly-token"])
         recurly_account.save()
-        return HttpResponse()
+        return HttpResponse("Saved")
 
 class SubscriptionInfo(views.APIView):
     def get(self, request, *args, **kwargs):

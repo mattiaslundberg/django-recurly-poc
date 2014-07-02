@@ -1,1 +1,16 @@
-HOME
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Django Recurly</title>
+</head>
+<body>
+    <h1>Django and recurly proof of concept</h1>
+    <a href="{% url 'auth_logout' %}">Logout</a>
+    <a href="{% url 'subscription' %}">Manage subscription</a>
+    <div>Current subscription status: <div id="subscription_status"></div></div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+<html>
