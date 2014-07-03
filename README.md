@@ -1,4 +1,4 @@
-Proof of concept running django and Recurly for payment.
+Proof of concept running django and [Recurly](http://recurly.com/) for payment.
 
 Start running:
 * Install pip
