@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/mattiaslundberg/django-recurly-poc.png?branch=master)](https://travis-ci.org/mattiaslundberg/django-recurly-poc)
+
 Proof of concept running django and [Recurly](http://recurly.com/) for payment.
 
 Start running:
