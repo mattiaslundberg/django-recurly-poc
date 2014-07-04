@@ -4,7 +4,5 @@ python:
 install:
     - pip install -r requirements.txt
 env:
-    - "RECURLY_API=somekey"
-    - "RECURLY_PUBLIC=somekey"
-    - "SUBDOMAIN=example.com"
+    - "RECURLY_API=somekey RECURLY_PUBLIC=somekey SUBDOMAIN=example.com"
 script: python manage.py test
